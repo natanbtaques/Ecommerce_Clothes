@@ -1,14 +1,32 @@
 import Banner from "@/components/header/Banner";
+import Products from "@/components/header/Products";
+import { ProductProps } from "../../type";
 
-export default function Home() {
+interface Props {
+  productData: ProductProps;
+}
+export default function Home({productData}:Props) {
+
   return (
-    <div>
-<main>
- <div className="max-2-screen-2xl mx-auto">
- <Banner/>
- </div>
-</main>
+      <main>
+        <div className="max-w-screen-2xl mx-auto">
+          <Banner />
+          <div className="relative md:-mt020 lgl:-mt-32 xl:-mt-60 z-20 mb-10">
+            <Products productData={productData}/>
+          </div>
+        </div>
+      </main>
 
-    </div>
   );
 }
+
+// recive the informations from the API
+export const getServerSideProps = async () => {
+  const res = await fetch("https://fakestoreapiserver.reactbd.com/tech");
+  const productData = await res.json();
+  return {
+    props: {
+      productData,
+    },
+  };
+};

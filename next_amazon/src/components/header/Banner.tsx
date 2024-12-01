@@ -9,7 +9,7 @@ const Banner = () => {
     <div className='relative'>
             <Carousel showStatus={false} showIndicators={false} showThumbs={false}  infiniteLoop autoPlay interval={3000}>
                 <div>
-                    <Image src={sliderImg_1} alt='image'/>
+                    <Image priority src={sliderImg_1} alt='image'/>
 
                 </div>
                 <div>
