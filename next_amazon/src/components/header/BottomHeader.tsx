@@ -1,5 +1,20 @@
+import { removeUser } from "@/pages/store/nextSlice";
+import { signOut } from "next-auth/react";
 import { LuMenu } from "react-icons/lu";
+import { useDispatch, useSelector } from "react-redux";
+import { stateProps } from "../../../type";
 const BottomHeader = () => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector(
+    (state: stateProps) => state.next
+  );
+  const handleSignOut = () => {
+    signOut();
+    dispatch(removeUser());
+  }
+
+
+
   return (
     <>
       <div className="w-full h-10 bg-amazon_light text-sm text-white px-4 flex items-center">
@@ -24,9 +39,9 @@ const BottomHeader = () => {
         <p className="hidden md:inline-flex  items-center  h-8 px-2 border border-transparent hover:borther-white cursor-pointer duration-300">
           Today Deals
         </p>
-        <p className="hidden md:inline-flex  items-center  h-8 px-2 border border-transparent hover:text-red-400 hover:borter-red-600 text-amazon_yellow cursor-pointer duration-300">
+        {userInfo && (<button onClick={handleSignOut} className="hidden md:inline-flex  items-center  h-8 px-2 border border-transparent hover:text-red-400 hover:borter-red-600 text-amazon_yellow cursor-pointer duration-300">
           Sign Out
-        </p>
+        </button>)}
       </div>
     </>
   );

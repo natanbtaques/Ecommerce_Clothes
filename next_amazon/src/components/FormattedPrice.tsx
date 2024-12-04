@@ -10,9 +10,9 @@ const FormattedPrice = ({ amount }: Props) => {
         minimumFractionDigits: 2,
     });
     return (
-        <div>
+        <span>
             {FormattedAmount}
-        </div>
+        </span>
     )
 }
 
